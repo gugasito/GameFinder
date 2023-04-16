@@ -1,3 +1,3 @@
-# GameFinder " Sistema de filtrado y búsqueda de juegos en una base de datos."
+# GameFinder "Sistema de filtrado y búsqueda de juegos en una base de datos."
 Para ayudar a los jugadores a encontrar juegos que se adapten a sus preferencias, creamos una base de datos con información detallada de los juegos y opciones de filtrado. Esto facilitaría la elección de juegos en línea, dado que hay muchas opciones disponibles y a menudo falta información suficiente para tomar una decisión informada.
 Se constituye con la capacidad de filtrar por categoría, género y nombre. Las principales características incluyen una interfaz de usuario intuitiva y fácil de usar, una base de datos bien estructurada que permita una búsqueda eficiente, un sistema de clasificación de juegos basado en etiquetas precisas y la capacidad de actualizar y agregar nuevos juegos.
