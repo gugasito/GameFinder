@@ -1,10 +1,12 @@
 import java.io.*;
-import java.util.List;
+import java.util.Arrays;
 
 public class Gamefinder {
     public static void main(String[] args) {
-        agregarJuego("Valorant", 2021, "Shooter", "RiotGames", true);
-        agregarJuego("League of Leguends", 2013, "Moba", "Riot Games", true);
+        agregarJuego("Valorant", 2021, "Shooter", "Riot_Games", true);
+        //agregarJuego("League_of_Leguends", 2013, "Moba", "Riot_Games", true);
+        //leer("Gamefinder.txt");
+        //borrarJuego("Gamefinder.txt", "Valorant");
         leer("Gamefinder.txt");
     }
 
@@ -13,7 +15,7 @@ public class Gamefinder {
         try {
             FileWriter archivo = new FileWriter("GameFinder.txt", true);
             try (BufferedWriter bw = new BufferedWriter(archivo)) {
-                bw.write("\n" + newGame.getNombre() + " " + newGame.getAño() + " " + newGame.getGenero() + " " + newGame.getDistribuidora() + " " + newGame.isFreeTP());
+                bw.write(newGame.getNombre() + " " + newGame.getAño() + " " + newGame.getGenero() + " " + newGame.getDistribuidora() + " " + newGame.isFreeTP() + "\n");
             }
             archivo.close();
         } catch (Exception ignored) {
@@ -47,12 +49,12 @@ public class Gamefinder {
         }
     }
 
-    public static boolean grabar(List<Juego> Datos) {
+    public static boolean grabar(String[] datos) {
         try {
             FileWriter archivo = new FileWriter("GameFinder.txt", true);
             try (BufferedWriter bw = new BufferedWriter(archivo)) {
-                for (Juego dato : Datos) {
-                    bw.write(dato + "\n");
+                for (int i = 0; i < datos.length; i++) {
+                    bw.write(datos[0] + " " + datos[1] + " " + datos[2] + " " + datos[3] + " " + datos[4] + "\n");
                 }
                 bw.close();
             }
@@ -63,19 +65,55 @@ public class Gamefinder {
         return true;
     }
 
-    public static void borrarJuego() {
+    public static void borrarJuego(String nombrearchivo, String lineToRemove) {
+        try {
 
+            File inFile = new File(nombrearchivo);
+
+            if (!inFile.isFile()) {
+                System.out.println("no hay file");
+                return;
+            }
+
+            //Construct the new file that will later be renamed to the original filename.
+            File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
+
+            BufferedReader br = new BufferedReader(new FileReader(nombrearchivo));
+            PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+
+            String line = null;
+
+            //Read from the original file and write to the new
+            //unless content matches data to be removed.
+            while ((line = br.readLine()) != null) {
+
+                if (!line.trim().contains(lineToRemove)) {
+
+                    pw.println(line);
+                    pw.flush();
+                }
+            }
+            pw.close();
+            br.close();
+
+            //Delete the original file
+            if (!inFile.delete()) {
+                System.out.println("Could not delete file");
+                return;
+            }
+
+            //Rename the new file to the filename the original file had.
+            if (!tempFile.renameTo(inFile)) {
+                System.out.println("Could not rename file");
+
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 
