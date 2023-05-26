@@ -3,13 +3,13 @@ import java.util.List;
 
 public class Gamefinder {
     public static void main(String[] args) {
-        leer("GameFinder.txt");
-        agregarJuego();
+        agregarJuego("Valorant", 2021, "Shooter", "RiotGames", true);
+        agregarJuego("League of Leguends", 2013, "Moba", "Riot Games", true);
         leer("Gamefinder.txt");
     }
 
-    private static void agregarJuego() {
-        Juego newGame = new Juego("Valorant", 2021, "fps", "RiotGames", true);
+    private static void agregarJuego(String nombre, int año, String genero, String distribuidora, boolean freeTP) {
+        Juego newGame = new Juego(nombre, año, genero, distribuidora, freeTP);
         try {
             FileWriter archivo = new FileWriter("GameFinder.txt", true);
             try (BufferedWriter bw = new BufferedWriter(archivo)) {
@@ -63,7 +63,9 @@ public class Gamefinder {
         return true;
     }
 
+    public static void borrarJuego() {
 
+    }
 }
 
 
