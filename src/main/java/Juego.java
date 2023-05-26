@@ -3,7 +3,8 @@ public class Juego {
     private int año;
     private String genero;
     private String distribuidora;
-    private boolean freeTP;
+    public enum F2P{Gratis,Pago}
+    private F2P freeTP;
 
     public String getNombre() {
         return nombre;
@@ -37,15 +38,15 @@ public class Juego {
         this.distribuidora = distribuidora;
     }
 
-    public boolean isFreeTP() {
+    public F2P isFreeTP() {
         return freeTP;
     }
 
-    public void setFreeTP(boolean freeTP) {
+    public void setFreeTP(F2P freeTP) {
         this.freeTP = freeTP;
     }
 
-    public Juego(String nombre, int año, String genero, String distribuidora, boolean freeTP) {
+    public Juego(String nombre, int año, String genero, String distribuidora, F2P freeTP) {
         this.nombre = nombre;
         this.año = año;
         this.genero = genero;
