@@ -3,14 +3,72 @@ import java.util.Arrays;
 
 public class Gamefinder {
     public static void main(String[] args) {
-        agregarJuego("Valorant", 2021, "Shooter", "Riot_Games", true);
-        //agregarJuego("League_of_Leguends", 2013, "Moba", "Riot_Games", true);
+        //agregarJuego("Valorant", 2021, "Shooter", "Riot_Games", Juego.F2P.Gratis);
+        //agregarJuego("League_of_Leguends", 2013, "Moba", "Riot_Games", Juego.F2P.Gratis);
+        //agregarJuego("Call of Duty ",2022,"Shooter","Activision", Juego.F2P.Pago);
         //leer("Gamefinder.txt");
         //borrarJuego("Gamefinder.txt", "Valorant");
         leer("Gamefinder.txt");
+        filtrarNombre("Valorant");
+        filtraGenero("Moba");
+        filtrarFreeToPlay(String.valueOf(Juego.F2P.Gratis));
     }
 
-    private static void agregarJuego(String nombre, int año, String genero, String distribuidora, boolean freeTP) {
+    private static void filtrarFreeToPlay(String free2Play) {
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
+                System.out.println("Juegos Free to Play");
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    if(linea.contains(free2Play)){
+                        System.out.println(linea);
+                    }
+                }
+                System.out.println("");
+            }
+        }catch (Exception ignored){
+            System.out.println("error");
+        }
+    }
+
+
+    private static void filtraGenero(String genero) {
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
+                System.out.println("Juegos de genero: "+genero);
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    if(linea.contains(genero)){
+                        System.out.println(linea);
+                    }
+                }
+                System.out.println("");
+            }
+        }catch (Exception ignored){
+            System.out.println("error");
+        }
+    }
+
+    private static void filtrarNombre(String nombre) {
+            try {
+                try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
+                    System.out.println("Caracteristicas de: "+nombre);
+                    String linea;
+                    while ((linea = br.readLine()) != null) {
+                        if(linea.contains(nombre)){
+                            System.out.println(linea);
+                        }
+                    }
+                    System.out.println("");
+                }
+        }catch (Exception ignored){
+            System.out.println("error");
+        }
+
+
+    }
+
+    private static void agregarJuego(String nombre, int año, String genero, String distribuidora, Juego.F2P freeTP) {
         Juego newGame = new Juego(nombre, año, genero, distribuidora, freeTP);
         try {
             FileWriter archivo = new FileWriter("GameFinder.txt", true);
@@ -38,8 +96,8 @@ public class Gamefinder {
                 String x;
                 x = temp;
                 String[] arreglo = x.split(" ");
-                for (int i = 0; i < arreglo.length; i++) {
-                    System.out.println("" + arreglo[i]);
+                for (int i = 0; i <1; i++) {
+                    System.out.println(x);
                 }
                 if (temp == null)
                     break;
