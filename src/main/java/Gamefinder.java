@@ -1,17 +1,15 @@
 import java.io.*;
-import java.util.Arrays;
 
 public class Gamefinder {
     public static void main(String[] args) {
         //agregarJuego("Valorant", 2021, "Shooter", "Riot_Games", Juego.F2P.Gratis);
         //agregarJuego("League_of_Leguends", 2013, "Moba", "Riot_Games", Juego.F2P.Gratis);
         //agregarJuego("Call of Duty ",2022,"Shooter","Activision", Juego.F2P.Pago);
-        //leer("Gamefinder.txt");
-        //borrarJuego("Gamefinder.txt", "Valorant");
-        leer("Gamefinder.txt");
         filtrarNombre("Valorant");
         filtraGenero("Moba");
         filtrarFreeToPlay(String.valueOf(Juego.F2P.Gratis));
+        borrarJuego("Gamefinder.txt", "Valorant");
+        leer("Gamefinder.txt");
     }
 
     private static void filtrarFreeToPlay(String free2Play) {
