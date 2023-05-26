@@ -9,7 +9,13 @@ public class Gamefinder {
         filtraGenero("Moba");
         filtrarFreeToPlay(String.valueOf(Juego.F2P.Gratis));
         borrarJuego("Gamefinder.txt", "Valorant");
+        agregarUsuario("Benja", Usuario.Rol.Administrador);
+        agregarUsuario("Guga", Usuario.Rol.Administrador);
+        agregarUsuario("Diego", Usuario.Rol.Usuario);
+        agregarUsuario("Samuel", Usuario.Rol.Administrador);
         leer("Gamefinder.txt");
+        buscarPorAño("2021");
+        leerAdiministrador("Administrador");
     }
 
     // CAMBIAR ENCAPSULAMIENTO MÉTODOS
@@ -80,6 +86,18 @@ public class Gamefinder {
         }
 
     }
+    private static void agregarUsuario(String nombre, Usuario.Rol rol) {
+        Usuario newUsuario = new Usuario(nombre, rol);
+        try {
+            FileWriter archivo = new FileWriter("GameFinderUsuarios.txt", true);
+            try (BufferedWriter bw = new BufferedWriter(archivo)) {
+                bw.write("\n" + newUsuario.getNombre() + " " + newUsuario.isRol());
+            }
+            archivo.close();
+        } catch (Exception ignored) {
+        }
+
+    }
 
 
     public static void leer(String nombrearchivo) {
@@ -122,6 +140,35 @@ public class Gamefinder {
         }
         return true;
     }
+    public static void buscarPorAño(String año){
+        try{
+            try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))){
+                String linea;
+                while ((linea = br.readLine()) != null){
+                    if(linea.contains(año)){
+                        System.out.println(linea);
+                    }
+                }
+            }
+        }catch (Exception ignored){
+            System.out.println("error");
+        }
+    }
+    public static void leerAdiministrador(String rol){
+        try{
+            try (BufferedReader br = new BufferedReader(new FileReader("GamefinderUsuarios.txt"))){
+                String linea;
+                while ((linea = br.readLine()) != null){
+                    if(linea.contains(rol)){
+                        System.out.println(linea);
+                    }
+                }
+            }
+        }catch (Exception ignored){
+            System.out.println("error");
+        }
+    }
+
 
     public static void borrarJuego(String nombrearchivo, String lineToRemove) {
         try {
