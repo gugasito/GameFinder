@@ -12,6 +12,8 @@ public class Gamefinder {
         leer("Gamefinder.txt");
     }
 
+    // CAMBIAR ENCAPSULAMIENTO MÉTODOS
+
     private static void filtrarFreeToPlay(String free2Play) {
         try {
             try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
