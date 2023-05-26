@@ -9,10 +9,10 @@ public class Gamefinder {
         filtraGenero("Moba");
         filtrarFreeToPlay(String.valueOf(Juego.F2P.Gratis));
         borrarJuego("Gamefinder.txt", "Valorant");
-        agregarUsuario("Benja", Usuario.Rol.Administrador);
-        agregarUsuario("Guga", Usuario.Rol.Administrador);
-        agregarUsuario("Diego", Usuario.Rol.Usuario);
-        agregarUsuario("Samuel", Usuario.Rol.Administrador);
+        //agregarUsuario("Benja", Usuario.Rol.Administrador);
+        //agregarUsuario("Guga", Usuario.Rol.Administrador);
+        //agregarUsuario("Diego", Usuario.Rol.Usuario);
+        //agregarUsuario("Samuel", Usuario.Rol.Administrador);
         leer("Gamefinder.txt");
         buscarPorAño("2021");
         leerAdiministrador("Administrador");
@@ -170,29 +170,20 @@ public class Gamefinder {
     }
 
 
-    public static void borrarJuego(String nombrearchivo, String lineToRemove) {
+    public static void borrarJuego(String nombreArchivo, String nombreJuego) {
         try {
-
-            File inFile = new File(nombrearchivo);
-
+            File inFile = new File(nombreArchivo);
             if (!inFile.isFile()) {
                 System.out.println("no hay file");
                 return;
             }
-
-            //Construct the new file that will later be renamed to the original filename.
             File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
-
-            BufferedReader br = new BufferedReader(new FileReader(nombrearchivo));
+            BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
-
             String line = null;
-
-            //Read from the original file and write to the new
-            //unless content matches data to be removed.
             while ((line = br.readLine()) != null) {
 
-                if (!line.trim().contains(lineToRemove)) {
+                if (!line.trim().contains(nombreJuego)) {
 
                     pw.println(line);
                     pw.flush();
@@ -201,17 +192,6 @@ public class Gamefinder {
             pw.close();
             br.close();
 
-            //Delete the original file
-            if (!inFile.delete()) {
-                System.out.println("Could not delete file");
-                return;
-            }
-
-            //Rename the new file to the filename the original file had.
-            if (!tempFile.renameTo(inFile)) {
-                System.out.println("Could not rename file");
-
-            }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
