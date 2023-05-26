@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Scanner;
 
 public class Gamefinder {
     public static void main(String[] args) {
@@ -18,7 +19,7 @@ public class Gamefinder {
         leerAdiministrador("Administrador");
     }
 
-    // CAMBIAR ENCAPSULAMIENTO MÉTODOS
+    // CAMBIAR ENCAPSULAMIENTO MÉTODOS!!!!
 
     private static void filtrarFreeToPlay(String free2Play) {
         try {
@@ -26,13 +27,13 @@ public class Gamefinder {
                 System.out.println("Juegos Free to Play");
                 String linea;
                 while ((linea = br.readLine()) != null) {
-                    if(linea.contains(free2Play)){
+                    if (linea.contains(free2Play)) {
                         System.out.println(linea);
                     }
                 }
                 System.out.println("");
             }
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
             System.out.println("error");
         }
     }
@@ -41,37 +42,35 @@ public class Gamefinder {
     private static void filtraGenero(String genero) {
         try {
             try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
-                System.out.println("Juegos de genero: "+genero);
+                System.out.println("Juegos de genero: " + genero);
                 String linea;
                 while ((linea = br.readLine()) != null) {
-                    if(linea.contains(genero)){
+                    if (linea.contains(genero)) {
                         System.out.println(linea);
                     }
                 }
                 System.out.println("");
             }
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
             System.out.println("error");
         }
     }
 
     private static void filtrarNombre(String nombre) {
-            try {
-                try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
-                    System.out.println("Caracteristicas de: "+nombre);
-                    String linea;
-                    while ((linea = br.readLine()) != null) {
-                        if(linea.contains(nombre)){
-                            System.out.println(linea);
-                        }
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
+                System.out.println("Caracteristicas de: " + nombre);
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    if (linea.contains(nombre)) {
+                        System.out.println(linea);
                     }
-                    System.out.println("");
                 }
-        }catch (Exception ignored){
+                System.out.println("");
+            }
+        } catch (Exception ignored) {
             System.out.println("error");
         }
-
-
     }
 
     private static void agregarJuego(String nombre, int año, String genero, String distribuidora, Juego.F2P freeTP) {
@@ -84,8 +83,8 @@ public class Gamefinder {
             archivo.close();
         } catch (Exception ignored) {
         }
-
     }
+
     private static void agregarUsuario(String nombre, Usuario.Rol rol) {
         Usuario newUsuario = new Usuario(nombre, rol);
         try {
@@ -96,25 +95,19 @@ public class Gamefinder {
             archivo.close();
         } catch (Exception ignored) {
         }
-
     }
-
 
     public static void leer(String nombrearchivo) {
         try {
-
             FileReader r = new FileReader(nombrearchivo);
             BufferedReader buffer = new BufferedReader(r);
-
             String temp = "";
-
             while (temp != null) {
-
                 temp = buffer.readLine();
                 String x;
                 x = temp;
                 String[] arreglo = x.split(" ");
-                for (int i = 0; i <1; i++) {
+                for (int i = 0; i < 1; i++) {
                     System.out.println(x);
                 }
                 if (temp == null)
@@ -125,50 +118,79 @@ public class Gamefinder {
         }
     }
 
-    public static boolean grabar(String[] datos) {
+    public static void buscarPorAño(String año) {
         try {
-            FileWriter archivo = new FileWriter("GameFinder.txt", true);
-            try (BufferedWriter bw = new BufferedWriter(archivo)) {
-                for (int i = 0; i < datos.length; i++) {
-                    bw.write(datos[0] + " " + datos[1] + " " + datos[2] + " " + datos[3] + " " + datos[4] + "\n");
-                }
-                bw.close();
-            }
-            archivo.close();
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-    public static void buscarPorAño(String año){
-        try{
-            try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))){
+            try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
                 String linea;
-                while ((linea = br.readLine()) != null){
-                    if(linea.contains(año)){
+                while ((linea = br.readLine()) != null) {
+                    if (linea.contains(año)) {
                         System.out.println(linea);
                     }
                 }
             }
-        }catch (Exception ignored){
-            System.out.println("error");
-        }
-    }
-    public static void leerAdiministrador(String rol){
-        try{
-            try (BufferedReader br = new BufferedReader(new FileReader("GamefinderUsuarios.txt"))){
-                String linea;
-                while ((linea = br.readLine()) != null){
-                    if(linea.contains(rol)){
-                        System.out.println(linea);
-                    }
-                }
-            }
-        }catch (Exception ignored){
+        } catch (Exception ignored) {
             System.out.println("error");
         }
     }
 
+    public static void leerAdiministrador(String rol) {
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader("GamefinderUsuarios.txt"))) {
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    if (linea.contains(rol)) {
+                        System.out.println(linea);
+                    }
+                }
+            }
+        } catch (Exception ignored) {
+            System.out.println("error");
+        }
+    }
+
+    private static void filtrarDistribuidora(String distribuidora) {
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    if (linea.contains(distribuidora)) {
+                        System.out.println(linea);
+                    }
+                }
+                System.out.println("");
+            }
+        } catch (Exception ignored) {
+            System.out.println("error");
+        }
+    }
+
+    public static void introduccion() {
+        double[][] game_finder = new double[10][7];
+        menu(game_finder);
+    }
+
+    public static void menu(double[][] game_finder) {
+        boolean seguir = true;
+        Scanner intro = new Scanner(System.in); //metodo de menu
+        do {
+            System.out.println("Bienvenido al menu GameFinder, por favor,  ingrese su opcion");
+            System.out.println("(1) Ingresar Datos");
+            System.out.println("(2) Mostar juegos por año de lanzamiento");
+            System.out.println("(3) Mostrar juegos por genero");
+            System.out.println("(4) Mostrar juegos por distribuidora");
+            System.out.println("(5) Salir");
+            int opcion = intro.nextInt();
+            switch (opcion) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                default:
+                    System.out.println("La opcion escogida no es valida, seleccione una nuevamente");
+            }
+        } while (seguir);
+    }
 
     public static void borrarJuego(String nombreArchivo, String nombreJuego) {
         try {
