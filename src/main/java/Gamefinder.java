@@ -1,10 +1,12 @@
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.List;
+import java.util.Scanner;
 
 public class Gamefinder {
     public static void main(String[] args) {
         agregarJuego("Valorant", 2021, "Shooter", "RiotGames", true);
-        agregarJuego("League of Leguends", 2013, "Moba", "Riot Games", true);
+        agregarJuego("League of Leguends", 2013, "Moba", "RiotGames", true);
         leer("Gamefinder.txt");
     }
 
@@ -66,7 +68,66 @@ public class Gamefinder {
     public static void borrarJuego() {
 
     }
+
+    private static void filtrarDistribuidora(String distribuidora) {
+        try {
+            try (BufferedReader br = new BufferedReader(new FileReader("Gamefinder.txt"))) {
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    if(linea.contains(distribuidora)){
+                        System.out.println(linea);
+                    }
+                }
+                System.out.println("");
+            }
+        }catch (Exception ignored){
+            System.out.println("error");
+        }
+    }
+
+
+    public static void introduccion() {
+        double[][] game_finder = new double[10][7];
+        menu(game_finder);
+    }
+
+    public static void menu(double[][] game_finder) {
+        boolean seguir = true;
+        Scanner intro = new Scanner(System.in); //metodo de menu
+        do {
+            System.out.println("Bienvenido al menu GameFinder, por favor,  ingrese su opcion");
+            System.out.println("(1) Ingresar Datos”);
+                    System.out.println("(2) Mostar juegos por año de lanzamiento“);
+                            System.out.println("(3) Mostrar juegos por genero”);
+                                    System.out.println("(4) Mostrar juegos por distribuidora”);
+                                            System.out.println("(5) Salir");
+            int opcion = intro.nextInt();
+            switch (opcion) {
+                case 1:
+                    llenarArreglo(game_finder);
+                    break;
+                case 2:
+                    buscarJuegosPorAñoLanzamiento(game_finder);
+                    break;
+                case 3:
+                    buscarJuegosPorGenero(game_finder);
+                    break;
+                case 4:
+                    buscarJuegosPorDistribuidora(game_finder);
+                    break;
+                case 5:
+                    salir();
+                    break;
+                default:
+
+                    System.out.println("La opcion escogida no es valida, seleccione una nuevamente");
+            }
+        } while (seguir);
+    }
+
 }
+
+
 
 
 
