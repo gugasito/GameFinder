@@ -1,19 +1,22 @@
+import modelo.Juego;
+import modelo.Usuario;
+
 import java.io.*;
 import java.util.Scanner;
 
 public class Gamefinder {
     public static void main(String[] args) {
-        //agregarJuego("Valorant", 2021, "Shooter", "Riot_Games", Juego.F2P.Gratis);
-        //agregarJuego("League_of_Leguends", 2013, "Moba", "Riot_Games", Juego.F2P.Gratis);
-        //agregarJuego("Call of Duty ",2022,"Shooter","Activision", Juego.F2P.Pago);
+        //agregarJuego("Valorant", 2021, "Shooter", "Riot_Games", modelo.Juego.F2P.Gratis);
+        //agregarJuego("League_of_Leguends", 2013, "Moba", "Riot_Games", modelo.Juego.F2P.Gratis);
+        //agregarJuego("Call of Duty ",2022,"Shooter","Activision", modelo.Juego.F2P.Pago);
         filtrarNombre("Valorant");
         filtraGenero("Moba");
         filtrarFreeToPlay(String.valueOf(Juego.F2P.Gratis));
         borrarJuego("Gamefinder.txt", "Valorant");
-        //agregarUsuario("Benja", Usuario.Rol.Administrador);
-        //agregarUsuario("Guga", Usuario.Rol.Administrador);
-        //agregarUsuario("Diego", Usuario.Rol.Usuario);
-        //agregarUsuario("Samuel", Usuario.Rol.Administrador);
+        //agregarUsuario("Benja", modelo.Usuario.Rol.Administrador);
+        //agregarUsuario("Guga", modelo.Usuario.Rol.Administrador);
+        //agregarUsuario("Diego", modelo.Usuario.Rol.modelo.Usuario);
+        //agregarUsuario("Samuel", modelo.Usuario.Rol.Administrador);
         leer("Gamefinder.txt");
         buscarPorAño("2021");
         leerAdiministrador("Administrador");
