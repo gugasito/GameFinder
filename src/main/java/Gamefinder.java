@@ -91,7 +91,7 @@ public class Gamefinder {
     private static void agregarUsuario(String nombre, Usuario.Rol rol) {
         Usuario newUsuario = new Usuario(nombre, rol);
         try {
-            FileWriter archivo = new FileWriter("GameFinderUsuarios.txt", true);
+            FileWriter archivo = new FileWriter("GameFinderUsuarios.txt.txt", true);
             try (BufferedWriter bw = new BufferedWriter(archivo)) {
                 bw.write("\n" + newUsuario.getNombre() + " " + newUsuario.isRol());
             }
