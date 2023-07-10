@@ -1,5 +1,11 @@
  package modelo;
 
+ /**
+  * Clase contenedora de objeto Usuario
+  * @author Diego Marillan
+  * @version 6 de julio
+  */
+
 public class Usuario {
 
     private String nombre;
@@ -14,6 +20,11 @@ public class Usuario {
 
     private String contraseña;
 
+     /**
+      * Constructor de objeto Usuario
+      * @param nombre Nombre del usuario
+      * @param contraseña Contraseña del usuario
+      */
     public Usuario(String nombre, String contraseña) {
         this.nombre = nombre;
         this.contraseña = contraseña;

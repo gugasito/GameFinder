@@ -1,4 +1,10 @@
 package modelo;
+
+/**
+ * Clase contenedora de objeto Juego
+ * @author Diego Marillan
+ * @version 6 de julio
+ */
 public class Juego {
     private String nombre;
     private int año;
@@ -22,7 +28,14 @@ public class Juego {
         return distribuidora;
     }
 
-
+    /**
+     * Constructor del objeto Juego
+     * @param nombre Nombre del juego
+     * @param año Año de lanzamiento
+     * @param genero Genero del videojuego
+     * @param distribuidora Distribuidora del videojuego
+     * @param freeTP Se refiere si es gratis o pago
+     */
     public Juego(String nombre, int año, String genero, String distribuidora, String freeTP) {
         this.nombre = nombre;
         this.año = año;
@@ -31,6 +44,10 @@ public class Juego {
         this.freeTP = freeTP;
     }
 
+    /**
+     * Metodo que muestra la informacion de un juego
+     * @return Datos del juego
+     */
     @Override
     public String toString() {
         return nombre + ", " + año + ", " + genero + ", " + distribuidora + ", " + freeTP;

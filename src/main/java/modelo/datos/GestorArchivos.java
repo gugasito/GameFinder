@@ -5,7 +5,18 @@ import modelo.Usuario;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * @author Diego Marillan
+ * @version 6 de julio
+ */
+
 public class GestorArchivos {
+
+    /**
+     * Este metodo lee las líneas del archivo
+     * @param rutaArchivo Ubicacion del archivo
+     * @return Cantidad de líneas escritas en el archivo
+     */
     public static int contarLineas(String rutaArchivo) {
         int contador = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
@@ -18,6 +29,11 @@ public class GestorArchivos {
         return contador + 1;
     }
 
+    /**
+     * Metodo para registrar los datos de los objetos
+     * @param objeto Datos del objeto a registrar
+     * @param direccionArchivo La ubicacion del archivo
+     */
     public static void registrarDato(Object objeto, String direccionArchivo) {
         try {
             File file = new File(direccionArchivo);
@@ -35,6 +51,11 @@ public class GestorArchivos {
         }
     }
 
+    /**
+     * Metodo que lee los nombres de los usuarios administradores
+     * @param direccionArchivo Ubicacion del archivo
+     * @return La lista de usuarios
+     */
     public static ArrayList<String> leerUsuarios(String direccionArchivo) {
         String textoArchivo = "";
         ArrayList<String> usuarios = new ArrayList<String>();
@@ -56,6 +77,11 @@ public class GestorArchivos {
         return usuarios;
     }
 
+    /**
+     * Metodo para leer las contraseñas en el archivo correspondiente
+     * @param direccionArchivo La ubicacion del archivo
+     * @return Una lista con las contraseña de los administradores
+     */
     public static ArrayList<String> leerContraseñas(String direccionArchivo) {
         String textoArchivo = "";
         ArrayList<String> contraseñas = new ArrayList<>();
@@ -77,6 +103,11 @@ public class GestorArchivos {
         return contraseñas;
     }
 
+    /**
+     * Metodo que elimina un juego de la lista
+     * @param direccionArchivo La ubicacion del archivo
+     * @param nombreJuego Nombre del juego a ser borrado
+     */
     public static void borrarJuego(String direccionArchivo, String nombreJuego) {
         try {
             File archivo = new File(direccionArchivo);
@@ -99,6 +130,13 @@ public class GestorArchivos {
             System.out.println("Documento no disponible, favor contactar con administrador");
         }
     }
+
+    /**
+     * Indica si el juego esta presente en el archivo o no
+     * @param direccionArchivo La ubicacion del archivo
+     * @param nombreJuego Nombre de videojuego a ser buscado
+     * @return Respuesta respecto a la existencia del videojuego
+     */
 
     public static boolean revisarJuegos(String direccionArchivo, String nombreJuego) {
         boolean juegoExiste = false;
@@ -131,7 +169,12 @@ public class GestorArchivos {
         return juegoExiste;
     }
 
-
+    /**
+     * Filtra juegos por nombre y si es gratis o pago
+     * @param nombre Nombre del juego a encontrar
+     * @param precio Se refiere si el juego es gratis o pago
+     * @return Juegos que cumplen los requisitos
+     */
     public static String[][] filtrarNombre(String nombre, String precio) {
         File archivo = null;
         FileReader Fr = null;
@@ -171,6 +214,12 @@ public class GestorArchivos {
         return matriz;
     }
 
+    /**
+     * Metodo que filtra juegos por año y si es gratis o no
+     * @param año Año de lanzamiento del juego
+     * @param precio Se refiere si el videojuego es gratis o pago
+     * @return Juegos que cumplen los requisitos
+     */
     public static String[][] filtrarAño(int año, String precio) {
         File archivo = null;
         FileReader Fr = null;
@@ -209,6 +258,13 @@ public class GestorArchivos {
         }
         return matriz;
     }
+
+    /**
+     * Filtra y muestra juegos por genero y precio
+     * @param genero Genero de videojuego a buscar
+     * @param precio Se refiere si el juego gratis o pago
+     * @return Juegos que cumplen los requisitos
+     */
 
     public static String[][] filtrarGenero(String genero, String precio) {
         File archivo = null;
@@ -249,6 +305,12 @@ public class GestorArchivos {
         return matriz;
     }
 
+    /**
+     * Metodo para filtrar juegos por desarrolladora
+     * @param distribuidora Distribuidora de videojuego a filtrar
+     * @param precio Se refiere si el juego es gratis o pago
+     * @return Juegos que cumplen los requisitos
+     */
     public static String[][] filtrarDistribuidora(String distribuidora, String precio) {
         File archivo = null;
         FileReader Fr = null;

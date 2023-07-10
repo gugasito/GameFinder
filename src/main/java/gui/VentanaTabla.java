@@ -4,11 +4,20 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
-
+/**
+ * Ventana que genera una tabla desplegable
+ * @author Benjamin Cruzado
+ * @version 6 de julio
+ */
 public class VentanaTabla extends JFrame {
     private String[][] datos;
     private String[] nombreColumnas;
 
+    /**
+     * Constructor VentanaTabla
+     * @param datos datos a mostrar
+     * @param nombreColumnas cantidad de columnas de la tabla
+     */
     public VentanaTabla(String[][] datos, String[] nombreColumnas) {
         super("Lista de datos");
         this.datos = datos;
@@ -22,10 +31,18 @@ public class VentanaTabla extends JFrame {
         super.setIconImage(icono.getImage());
     }
 
+    /**
+     * Metodo que indica que la celda no es editable
+     * @param row línea de la tabla
+     * @param column columna de la tabla
+     * @return indicacion de que la celda no se puede editar
+     */
     public boolean isCellEditable(int row, int column) {
         return false;
     }
-
+    /**
+     * Metodo que genera y muestra la tabla
+     */
     public void generarTabla() {
         DefaultTableModel dtm = new DefaultTableModel(this.datos, this.nombreColumnas) {
             @Override
@@ -47,6 +64,9 @@ public class VentanaTabla extends JFrame {
         });
     }
 
+    /**
+     * Metodo para cerrar la ventana
+     */
     private void cerrarVentana() {
         this.dispose();
     }
